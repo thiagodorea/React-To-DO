@@ -114,7 +114,7 @@ function App() {
                 {msgValidacao.indexOf('categoria') != -1 && categoria.length == 0  ? <span className="alet_input">Campo obrigatório</span> : <span></span>}
 
                 <p>Data</p>
-                <input type="date" required onChange={(event) => setData(event.target.value)} value={data} style={msgValidacao.indexOf('data') != -1 && data.length == 0 ? { borderColor: "red"}: {marginBottom:"20px"}} />
+                <input type="date" min={new Date().toJSON().substring(0,10)} required onChange={(event) => setData(event.target.value)} value={data} style={msgValidacao.indexOf('data') != -1 && data.length == 0 ? { borderColor: "red"}: {marginBottom:"20px"}} />
                 {msgValidacao.indexOf('data') != -1 && data.length == 0  ? <span className="alet_input">Campo obrigatório</span> : <span></span>}
 
                 <p>Descrição</p>
@@ -135,7 +135,7 @@ function App() {
             <ul>
               {listaTarefas.map((item, index) => (
               <li key={index}>
-                <h3 className="titulo_tarefa"> <span>{item.titulo}</span> <span>{item.data}</span>  </h3>
+                <h3 className="titulo_tarefa"> <span>{item.titulo}</span> <span>{new Date(item.data).toLocaleDateString('pt-BR', {timeZone: 'UTC'})}</span>  </h3>
                 <p className="subtitulo_tarefa">{item.categoria}</p>
                 <p className="conteudo_tarefa">{item.descricao}</p>
                 <div className="right">
